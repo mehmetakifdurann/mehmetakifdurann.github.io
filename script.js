@@ -35,3 +35,71 @@ window.addEventListener('scroll', () => {
         }
     });
 });
+
+// Image Modal Functions
+function openModal(imageSrc) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    
+    if (!modal || !modalImg) {
+        console.error('Modal elements not found');
+        return;
+    }
+    
+    modal.style.display = 'block';
+    modalImg.src = imageSrc;
+    modalImg.onerror = function() {
+        console.error('Image failed to load:', imageSrc);
+        alert('Görsel yüklenemedi. Lütfen görsel dosyasının images klasöründe olduğundan emin olun.');
+    };
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    const modal = document.getElementById('imageModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeModal();
+    }
+});
+
+// Prevent modal from closing when clicking on the image
+document.addEventListener('DOMContentLoaded', function() {
+    const modalImage = document.getElementById('modalImage');
+    if (modalImage) {
+        modalImage.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    }
+    
+    // Add click handlers to project images
+    const projectImageContainers = document.querySelectorAll('.project-image');
+    projectImageContainers.forEach(container => {
+        container.addEventListener('click', function(e) {
+            const imageSrc = this.getAttribute('data-image');
+            if (imageSrc) {
+                openModal(imageSrc);
+            }
+        });
+    });
+    
+    // Add error handling for images
+    const projectImages = document.querySelectorAll('.project-image img');
+    projectImages.forEach(img => {
+        img.addEventListener('error', function() {
+            this.style.display = 'none';
+            const parent = this.parentElement;
+            if (parent) {
+                parent.style.display = 'none';
+            }
+        });
+    });
+});
+

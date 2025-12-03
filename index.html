@@ -231,23 +231,84 @@
 
                     <div class="project-item">
                         <div class="project-header">
-                            <h3 class="project-name">IoT-Based Smart Waste Management System</h3>
+                            <h3 class="project-name">Smart Eco-Bin</h3>
                         </div>
                         <p class="project-description">
-                            Co-developed an IoT solution for automated waste management. The system utilizes LDR sensors and an 
-                            Arduino microcontroller to detect waste levels, triggering LED and audio alerts.
+                            Smart Eco-Bin is an IoT-enabled waste management system designed to encourage recycling. It features a 
+                            dual-compartment structure with touchless, sensor-based automatic lids powered by Arduino. The system is 
+                            paired with a native Android application (Java) that allows users to monitor fill levels in real-time and 
+                            track their recycling statistics and ratios.
                         </p>
                         <div class="project-tech">
                             <span>IoT</span>
                             <span>Arduino</span>
                             <span>Java</span>
                             <span>Android</span>
-                            <span>Processing</span>
+                            <span>Sensor Technology</span>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-header">
+                            <h3 class="project-name">Stoxly</h3>
+                        </div>
+                        <p class="project-description">
+                            Stoxly is a financial analysis platform designed to help users optimize their investment strategies. 
+                            Built with a focus on data visualization and user experience, the application processes real-time market 
+                            data to provide detailed performance metrics and asset allocation reports. Stoxly transforms complex 
+                            financial data into clear, intuitive visuals, enabling users to make informed decisions.
+                        </p>
+                        <div class="project-images">
+                            <div class="project-image" data-image="images/stoxly-main.png">
+                                <img src="images/stoxly-main.png" alt="Stoxly Main Interface" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23112240%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%238892b0%22 font-family=%22monospace%22 font-size=%2214%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EGörsel eklenmemiş%3C/text%3E%3C/svg%3E';">
+                            </div>
+                            <div class="project-image" data-image="images/stoxly-price.png">
+                                <img src="images/stoxly-price.png" alt="Stoxly Price Analysis" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23112240%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%238892b0%22 font-family=%22monospace%22 font-size=%2214%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EGörsel eklenmemiş%3C/text%3E%3C/svg%3E';">
+                            </div>
+                        </div>
+                        <div class="project-tech">
+                            <span>Financial Analysis</span>
+                            <span>Data Visualization</span>
+                            <span>Real-time Data</span>
+                            <span>Investment Strategy</span>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-header">
+                            <h3 class="project-name">File Bridge</h3>
+                        </div>
+                        <p class="project-description">
+                            File Bridge is a robust SFTP client engineered for secure, end-to-end encrypted file transfers using 
+                            SSH (Secure Shell) tunneling. Developed with a focus on network security and efficiency, it supports 
+                            essential features such as drag-and-drop functionality, session management, and the ability to resume 
+                            interrupted transfers. It demonstrates a strong application of network programming principles.
+                        </p>
+                        <div class="project-images">
+                            <div class="project-image" data-image="images/filebridge-pool.png">
+                                <img src="images/filebridge-pool.png" alt="FileBridge File Pool" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23112240%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%238892b0%22 font-family=%22monospace%22 font-size=%2214%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EGörsel eklenmemiş%3C/text%3E%3C/svg%3E';">
+                            </div>
+                            <div class="project-image" data-image="images/filebridge-main.png">
+                                <img src="images/filebridge-main.png" alt="FileBridge Main Interface" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23112240%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%238892b0%22 font-family=%22monospace%22 font-size=%2214%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EGörsel eklenmemiş%3C/text%3E%3C/svg%3E';">
+                            </div>
+                        </div>
+                        <div class="project-tech">
+                            <span>SFTP</span>
+                            <span>SSH</span>
+                            <span>Network Programming</span>
+                            <span>File Transfer</span>
+                            <span>Security</span>
                         </div>
                     </div>
                 </div>
             </section>
         </main>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage" onclick="event.stopPropagation()">
     </div>
 
     <script src="script.js"></script>
