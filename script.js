@@ -1,105 +1,122 @@
-// Smooth Scrolling
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            const targetPosition = target.offsetTop - 20;
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
+const nav = document.getElementById("site-nav");
+const menuToggle = document.querySelector(".menu-toggle");
+const navLinks = Array.from(document.querySelectorAll(".site-nav a"));
+const sections = Array.from(document.querySelectorAll("main section[id]"));
+const modal = document.getElementById("imageModal");
+const modalImage = document.getElementById("modalImage");
+const modalClose = document.querySelector(".modal-close");
 
-// Active Navigation Link
-const sections = document.querySelectorAll('.content-section');
-const navLinks = document.querySelectorAll('.nav-link');
+function openMenu() {
+    if (!nav || !menuToggle) return;
+    nav.classList.add("is-open");
+    menuToggle.setAttribute("aria-expanded", "true");
+}
 
-window.addEventListener('scroll', () => {
-    let current = '';
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (pageYOffset >= sectionTop - 200) {
-            current = section.getAttribute('id');
-        }
-    });
+function closeMenu() {
+    if (!nav || !menuToggle) return;
+    nav.classList.remove("is-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+}
 
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-        }
-    });
-});
-
-// Image Modal Functions
-function openModal(imageSrc) {
-    const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('modalImage');
-    
-    if (!modal || !modalImg) {
-        console.error('Modal elements not found');
-        return;
+function toggleMenu() {
+    if (!nav || !menuToggle) return;
+    const isOpen = nav.classList.contains("is-open");
+    if (isOpen) {
+        closeMenu();
+    } else {
+        openMenu();
     }
-    
-    modal.style.display = 'block';
-    modalImg.src = imageSrc;
-    modalImg.onerror = function() {
-        console.error('Image failed to load:', imageSrc);
-        alert('Görsel yüklenemedi. Lütfen görsel dosyasının images klasöründe olduğundan emin olun.');
-    };
-    document.body.style.overflow = 'hidden';
+}
+
+function setActiveLink(id) {
+    navLinks.forEach((link) => {
+        const isActive = link.getAttribute("href") === `#${id}`;
+        link.classList.toggle("is-active", isActive);
+    });
+}
+
+function openModal(src, alt = "Project preview") {
+    if (!modal || !modalImage) return;
+    modalImage.src = src;
+    modalImage.alt = alt;
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
 }
 
 function closeModal() {
-    const modal = document.getElementById('imageModal');
-    if (modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
+    if (!modal || !modalImage) return;
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    modalImage.src = "";
+    document.body.style.overflow = "";
 }
 
-// Close modal on Escape key
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
+menuToggle?.addEventListener("click", toggleMenu);
+
+navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+        closeMenu();
+    });
+});
+
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", (event) => {
+        const target = anchor.getAttribute("href");
+        if (!target || target === "#") return;
+        const element = document.querySelector(target);
+        if (!element) return;
+
+        event.preventDefault();
+        closeMenu();
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+});
+
+const observer = new IntersectionObserver(
+    (entries) => {
+        const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visible.length > 0) {
+            setActiveLink(visible[0].target.id);
+        }
+    },
+    {
+        root: null,
+        threshold: [0.25, 0.4, 0.6],
+        rootMargin: "-18% 0px -55% 0px",
+    }
+);
+
+sections.forEach((section) => observer.observe(section));
+
+document.querySelectorAll("[data-modal-image]").forEach((node) => {
+    node.addEventListener("click", () => {
+        const src = node.getAttribute("data-modal-image");
+        const img = node.querySelector("img");
+        if (src) {
+            openModal(src, img?.alt || "Project preview");
+        }
+    });
+});
+
+modal?.addEventListener("click", (event) => {
+    if (event.target === modal) {
         closeModal();
     }
 });
 
-// Prevent modal from closing when clicking on the image
-document.addEventListener('DOMContentLoaded', function() {
-    const modalImage = document.getElementById('modalImage');
-    if (modalImage) {
-        modalImage.addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
+modalClose?.addEventListener("click", closeModal);
+
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+        closeMenu();
+        closeModal();
     }
-    
-    // Add click handlers to project images
-    const projectImageContainers = document.querySelectorAll('.project-image');
-    projectImageContainers.forEach(container => {
-        container.addEventListener('click', function(e) {
-            const imageSrc = this.getAttribute('data-image');
-            if (imageSrc) {
-                openModal(imageSrc);
-            }
-        });
-    });
-    
-    // Add error handling for images
-    const projectImages = document.querySelectorAll('.project-image img');
-    projectImages.forEach(img => {
-        img.addEventListener('error', function() {
-            this.style.display = 'none';
-            const parent = this.parentElement;
-            if (parent) {
-                parent.style.display = 'none';
-            }
-        });
-    });
 });
 
+if (navLinks.length > 0) {
+    setActiveLink("home");
+}
