@@ -3,460 +3,349 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mehmet Akif Duran portfolio featuring mobile health, scheduling systems, and data-driven projects.">
-    <title>Mehmet Akif Duran | Portfolio</title>
+    <meta name="description" content="Mehmet Akif Duran portfolio: backend development, computer engineering, internships, leadership, and software projects.">
+    <title>Mehmet Akif Duran | Computer Engineering Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <script>
+        try {
+            const savedTheme = localStorage.getItem("theme");
+            const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            document.documentElement.dataset.theme = savedTheme || (prefersDark ? "dark" : "light");
+        } catch {
+            document.documentElement.dataset.theme = "light";
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
-    <div class="page-wrap">
-        <header class="site-header">
-            <a class="brand" href="#home" aria-label="Mehmet Akif Duran home">
-                <span class="brand-copy">
-                    <strong>Mehmet Akif Duran</strong>
-                    <small>Computer Engineering Student</small>
-                </span>
-            </a>
-
-            <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-nav">
-                <span></span>
-                <span></span>
-                <span></span>
+    <header class="site-header">
+        <a class="brand" href="#home" aria-label="Mehmet Akif Duran home">
+            <span>
+                <strong>Mehmet Akif Duran</strong>
+                <small>Computer Engineering / Backend Developer</small>
+            </span>
+        </a>
+        <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+            <a href="#home">Home</a>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="header-tools">
+            <button class="theme-toggle" type="button" aria-label="Switch to dark theme" title="Switch to dark theme">
+                <span class="theme-icon" aria-hidden="true">&#9789;</span>
             </button>
+            <a class="header-cta" href="mailto:mehmetakifdurann@gmail.com">Contact</a>
+            <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-nav">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
 
-            <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
-                <a href="#home">Home</a>
-                <a href="#projects">Projects</a>
-                <a href="#experience">Experience</a>
-                <a href="#contact">Contact</a>
-            </nav>
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-copy">
+                <p class="eyebrow">Ankara / Baskent University / Computer Engineering</p>
+                <h1>Software built around real problems.</h1>
+                <p class="hero-text">
+                    I am Mehmet Akif Duran, a senior Computer Engineering student and backend developer.
+                    I build API-driven products, optimization systems, mobile applications, and practical tools that turn complex workflows into clear experiences.
+                </p>
+                <div class="hero-actions">
+                    <a class="button button--solid" href="#projects"><i class="fa-solid fa-layer-group" aria-hidden="true"></i>View projects</a>
+                    <a class="button button--ghost" href="https://github.com/mehmetakifdurann" target="_blank" rel="noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i>GitHub</a>
+                    <a class="button button--ghost" href="https://www.linkedin.com/in/mehmetakifduran/" target="_blank" rel="noreferrer"><i class="fa-brands fa-linkedin" aria-hidden="true"></i>LinkedIn</a>
+                </div>
+            </div>
+        </section>
 
-            <a class="header-cta" href="#contact">Let&apos;s talk</a>
-        </header>
+        <section class="section intro-band" aria-label="Focus areas">
+            <article>
+                <i class="fa-solid fa-server" aria-hidden="true"></i>
+                <h2>Backend & APIs</h2>
+                <p>FastAPI, data flow, file-transfer logic, database-backed services, and operational tooling.</p>
+            </article>
+            <article>
+                <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+                <h2>Optimization</h2>
+                <p>Course scheduling, room assignment, constraint thinking, and usable admin interfaces.</p>
+            </article>
+            <article>
+                <i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i>
+                <h2>Mobile & Product</h2>
+                <p>Patient support apps, financial insight tools, and interfaces designed around actual users.</p>
+            </article>
+        </section>
 
-        <main>
-            <section class="hero" id="home">
-                <div class="hero-copy">
-                    <p class="eyebrow">Portfolio / Mobile, web, and systems work</p>
-                    <h1>Designing software that turns complex workflows into calm, useful experiences.</h1>
-                    <p class="hero-text">
-                        I build products where algorithms, interfaces, and operational logic need to work together cleanly.
-                        My focus sits at the intersection of mobile health, scheduling systems, and data-heavy tools.
-                    </p>
+        <section class="section" id="projects">
+            <div class="section-heading">
+                <p class="eyebrow">Selected work</p>
+                <h2>Selected software projects.</h2>
+                <p>Backend systems, mobile products, optimization work, financial tools, signal processing, and IoT experiments.</p>
+            </div>
 
-                    <div class="hero-actions">
-                        <a class="button button--solid" href="#projects">View projects</a>
-                        <a class="button button--ghost" href="mailto:mehmetakifdurann@gmail.com">Email me</a>
+            <div class="featured-grid">
+                <article class="project-card project-card--wide">
+                    <div class="project-copy">
+                        <p class="case-label">FastAPI / OR-Tools / React</p>
+                        <h3>OptiSched / optimalSchedule</h3>
+                        <p>University course scheduling system for Baskent University's engineering departments, combining a solver-backed backend with a clear React planning interface.</p>
+                        <div class="tag-row"><span>FastAPI</span><span>OR-Tools</span><span>React</span><span>Scheduling</span></div>
+                        <a class="text-link" href="https://github.com/mehmetakifdurann/optimalSchedule" target="_blank" rel="noreferrer">Open repository</a>
                     </div>
-
-                    <div class="tech-panel" aria-label="Tech stack">
-                        <span>Tech Stack</span>
-                        <div class="tech-grid">
-                            <b>Python</b>
-                            <b>Java (OOP)</b>
-                            <b>C / C++</b>
-                            <b>SQL</b>
-                            <b>MATLAB</b>
-                            <b>R</b>
-                            <b>Algorithms & Data Structures</b>
-                            <b>System Programming</b>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="hero-aside">
-                    <article class="focus-panel">
-                        <p class="panel-label">Current focus</p>
-                        <h2>Building clear product interfaces for complex workflows.</h2>
-                        <div class="focus-list">
-                            <div class="focus-item">
-                                <i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i>
-                                <span>iOS + Android mobile app experiences</span>
-                            </div>
-                            <div class="focus-item">
-                                <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
-                                <span>Scheduling and operations tools</span>
-                            </div>
-                            <div class="focus-item">
-                                <i class="fa-solid fa-chart-simple" aria-hidden="true"></i>
-                                <span>Data-heavy interfaces and analysis</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="availability-panel">
-                        <span>Open to</span>
-                        <strong>Internships, collaborations, and product-oriented engineering work.</strong>
-                        <div class="availability-grid">
-                            <div>
-                                <small>Portfolio scope</small>
-                                <b>8 projects</b>
-                            </div>
-                            <div>
-                                <small>Main stack</small>
-                                <b>iOS + Android + Web</b>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </section>
-
-            <section class="section" id="projects">
-                <div class="section-heading">
-                    <p class="eyebrow">Projects</p>
-                    <h2>Mobile, scheduling, data, and systems work shaped around real workflows.</h2>
-                    <p>
-                        A collection of practical software projects that combine product thinking, clear interfaces,
-                        algorithms, and useful operational logic.
-                    </p>
-                </div>
-
-                <div class="project-grid">
-                    <article class="project-card project-card--media">
-                        <div class="card-gallery card-gallery--multi">
-                            <figure class="card-image card-image--main" data-modal-image="assets/ilac-1.png">
-                                <img src="assets/ilac-1.png" alt="İlaç Asistanım home screen" loading="lazy">
-                            </figure>
-                            <div class="gallery-strip">
-                                <figure class="card-image" data-modal-image="assets/ilac-2.png">
-                                    <img src="assets/ilac-2.png" alt="İlaç Asistanım medication list" loading="lazy">
-                                </figure>
-                                <figure class="card-image" data-modal-image="assets/ilac-3.png">
-                                    <img src="assets/ilac-3.png" alt="İlaç Asistanım missed dose modal" loading="lazy">
-                                </figure>
-                                <figure class="card-image" data-modal-image="assets/ilac-4.png">
-                                    <img src="assets/ilac-4.png" alt="İlaç Asistanım treatment summary" loading="lazy">
-                                </figure>
-                                <figure class="card-image" data-modal-image="assets/ilac-5.png">
-                                    <img src="assets/ilac-5.png" alt="İlaç Asistanım caregiver profile" loading="lazy">
-                                </figure>
-                                <figure class="card-image" data-modal-image="assets/ilac-6.png">
-                                    <img src="assets/ilac-6.png" alt="İlaç Asistanım patient profile" loading="lazy">
-                                </figure>
-                            </div>
-                        </div>
-                        <div class="project-copy">
-                            <p class="case-label">Mobile health / iOS + Android</p>
-                            <h3>İlaç Asistanım</h3>
-                            <p>
-                                A mobile medication management demo app designed to support elderly and chronically ill
-                                patients while reducing the tracking burden on caregivers.
-                            </p>
-                            <div class="tag-row">
-                                <span>iOS + Android</span>
-                                <span>Java</span>
-                                <span>Health Workflow</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="project-card project-card--media">
-                        <div class="card-gallery card-gallery--multi">
-                            <figure class="card-image card-image--main" data-modal-image="assets/optisched-1.jpeg">
-                                <img src="assets/optisched-1.jpeg" alt="OptiSched weekly timetable" loading="lazy">
-                            </figure>
-                            <div class="gallery-strip">
-                                <figure class="card-image" data-modal-image="assets/optisched-2.jpeg">
-                                    <img src="assets/optisched-2.jpeg" alt="OptiSched class management modal" loading="lazy">
-                                </figure>
-                                <figure class="card-image" data-modal-image="assets/optisched-3.jpeg">
-                                    <img src="assets/optisched-3.jpeg" alt="OptiSched calendar view" loading="lazy">
-                                </figure>
-                            </div>
-                        </div>
-                        <div class="project-copy">
-                            <p class="case-label">Scheduling / room allocation</p>
-                            <h3>OptiSched</h3>
-                            <p>
-                                A scheduling and room assignment solution for academic timetable planning, classroom
-                                reservations, course organization, and conflict reduction.
-                            </p>
-                            <div class="tag-row">
-                                <span>Scheduling</span>
-                                <span>Room Assignment</span>
-                                <span>Optimization</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="project-card project-card--media">
-                        <div class="card-gallery">
-                            <figure class="card-image card-image--main" data-modal-image="stoxly-main.png">
-                                <img src="stoxly-main.png" alt="Stoxly main interface" loading="lazy">
-                            </figure>
-                            <figure class="card-image card-image--secondary" data-modal-image="stoxly-price.png">
-                                <img src="stoxly-price.png" alt="Stoxly price analysis view" loading="lazy">
-                            </figure>
-                        </div>
-                        <div class="project-copy">
-                            <p class="case-label">Financial analysis platform</p>
-                            <h3>Stoxly</h3>
-                            <p>
-                                A data visualization and investment analysis platform that turns real-time market data into
-                                clear performance reports and portfolio insights.
-                            </p>
-                            <div class="tag-row">
-                                <span>Financial Data</span>
-                                <span>Visualization</span>
-                                <span>UX</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="project-card project-card--media">
-                        <div class="card-gallery">
-                            <figure class="card-image card-image--main" data-modal-image="filebridge-main.png">
-                                <img src="filebridge-main.png" alt="File Bridge main interface" loading="lazy">
-                            </figure>
-                            <figure class="card-image card-image--secondary" data-modal-image="filebridge-pool.png">
-                                <img src="filebridge-pool.png" alt="File Bridge transfer pool interface" loading="lazy">
-                            </figure>
-                        </div>
-                        <div class="project-copy">
-                            <p class="case-label">Secure file transfer</p>
-                            <h3>File Bridge</h3>
-                            <p>
-                                An SFTP client focused on secure transfers, session handling, and efficient file movement
-                                through a practical network programming workflow.
-                            </p>
-                            <div class="tag-row">
-                                <span>SFTP</span>
-                                <span>SSH</span>
-                                <span>Security</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-visual">
-                            <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
-                        </div>
-                        <div class="project-copy">
-                            <p class="case-label">Market analytics</p>
-                            <h3>Financial Asset Performance Analyzer</h3>
-                            <p>
-                                A Python tool that pulls stock data, analyzes historical performance, and produces statistical
-                                summaries such as means, standard deviations, and percentiles.
-                            </p>
-                            <div class="tag-row">
-                                <span>Python</span>
-                                <span>Plotly</span>
-                                <span>Yahoo Finance API</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-visual project-visual--amber">
-                            <i class="fa-solid fa-traffic-light" aria-hidden="true"></i>
-                        </div>
-                        <div class="project-copy">
-                            <p class="case-label">Simulation</p>
-                            <h3>Traffic Light Control Simulation</h3>
-                            <p>
-                                A software-based traffic control model with automated timing logic and manual override
-                                behavior for studying intersection flow.
-                            </p>
-                            <div class="tag-row">
-                                <span>Algorithms</span>
-                                <span>Simulation</span>
-                                <span>Software Engineering</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-visual project-visual--coral">
-                            <i class="fa-solid fa-wave-square" aria-hidden="true"></i>
-                        </div>
-                        <div class="project-copy">
-                            <p class="case-label">Medical signal processing</p>
-                            <h3>ECG Signal Analysis & Arrhythmia Detection</h3>
-                            <p>
-                                Diagnostic analysis software built with C++ and MATLAB for identifying rhythm irregularities
-                                and abnormal heart rate peaks in ECG data.
-                            </p>
-                            <div class="tag-row">
-                                <span>C++</span>
-                                <span>MATLAB</span>
-                                <span>Signal Processing</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-visual project-visual--mint">
-                            <i class="fa-solid fa-recycle" aria-hidden="true"></i>
-                        </div>
-                        <div class="project-copy">
-                            <p class="case-label">IoT / Android</p>
-                            <h3>Smart Eco-Bin</h3>
-                            <p>
-                                An Arduino-powered recycling system paired with an Android app for monitoring fill levels and
-                                recycling statistics in real time.
-                            </p>
-                            <div class="tag-row">
-                                <span>IoT</span>
-                                <span>Arduino</span>
-                                <span>Android</span>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </section>
-
-            <section class="section" id="experience">
-                <div class="section-heading">
-                    <p class="eyebrow">Experience</p>
-                    <h2>Leadership, internships, and community work alongside engineering.</h2>
-                </div>
-
-                <div class="timeline">
-                    <article class="timeline-item">
-                        <div>
-                            <p class="timeline-date">Aug 2025 — Sep 2025</p>
-                            <h3>IT Intern, 4S Information Technologies</h3>
-                        </div>
-                        <div class="timeline-body">
-                            <ul>
-                                <li>Worked with Active Directory Domain Services and Azure AI Studio.</li>
-                                <li>Gained hands-on experience in IT infrastructure management and cloud-based AI solutions.</li>
-                            </ul>
-                            <div class="tag-row">
-                                <span>Active Directory</span>
-                                <span>Azure AI Studio</span>
-                                <span>Cloud Services</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="timeline-item">
-                        <div>
-                            <p class="timeline-date">Oct 2024 — Dec 2024</p>
-                            <h3>Research & Development Intern, Feed Protocol</h3>
-                        </div>
-                        <div class="timeline-body">
-                            <ul>
-                                <li>Contributed to research and development projects, working on innovative solutions.</li>
-                                <li>Explored new technologies in a remote environment.</li>
-                            </ul>
-                            <div class="tag-row">
-                                <span>Research</span>
-                                <span>Development</span>
-                                <span>Remote Work</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="timeline-item">
-                        <div>
-                            <p class="timeline-date">Sep 2025 — Present</p>
-                            <h3>Social Media Manager, Meet and Study Kütüphane</h3>
-                        </div>
-                        <div class="timeline-body">
-                            <ul>
-                                <li>Managing social media presence and digital communications.</li>
-                                <li>Creating engaging content and building community engagement.</li>
-                            </ul>
-                            <div class="tag-row">
-                                <span>Social Media</span>
-                                <span>Content Creation</span>
-                                <span>Community Management</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="timeline-item">
-                        <div>
-                            <p class="timeline-date">Sep 2025 — Present</p>
-                            <h3>Lead, Google Developer Groups on Campus Başkent University</h3>
-                        </div>
-                        <div class="timeline-body">
-                            <ul>
-                                <li>Leading the GDG chapter at Başkent University.</li>
-                                <li>Organizing tech events, workshops, and fostering a community of developers.</li>
-                            </ul>
-                            <div class="tag-row">
-                                <span>Leadership</span>
-                                <span>Event Organization</span>
-                                <span>Community Building</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="timeline-item">
-                        <div>
-                            <p class="timeline-date">Oct 2024 — Oct 2025</p>
-                            <h3>President, Başkent University Computer Society</h3>
-                        </div>
-                        <div class="timeline-body">
-                            <ul>
-                                <li>Led the university's computer society, organizing technical events and workshops.</li>
-                                <li>Fostered collaboration among computer science students.</li>
-                            </ul>
-                            <div class="tag-row">
-                                <span>Leadership</span>
-                                <span>Event Management</span>
-                                <span>Student Organizations</span>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </section>
-
-            <section class="section" id="about">
-                <div class="section-heading">
-                    <p class="eyebrow">About</p>
-                    <h2>Computer Engineering student at Başkent University, focused on AI, data, and product thinking.</h2>
-                </div>
-
-                <div class="about-grid">
-                    <div class="about-card">
-                        <p>
-                            I like building systems that combine useful logic with careful presentation. My best work usually
-                            happens when there is a real workflow to improve, whether that is medication tracking, scheduling,
-                            or making information easier to interpret.
-                        </p>
-                    </div>
-
-                    <div class="skills-card">
-                        <h3>Tools I work with</h3>
-                        <div class="tag-row">
-                            <span>Python</span>
-                            <span>Java</span>
-                            <span>C / C++</span>
-                            <span>SQL</span>
-                            <span>iOS + Android</span>
-                            <span>MATLAB</span>
-                            <span>Data Visualization</span>
-                            <span>Algorithms</span>
+                    <div class="card-gallery card-gallery--multi">
+                        <figure class="card-image card-image--main" data-modal-image="assets/optisched-1.jpeg"><img src="assets/optisched-1.jpeg" alt="OptiSched weekly timetable" loading="lazy"></figure>
+                        <div class="gallery-strip">
+                            <figure class="card-image" data-modal-image="assets/optisched-2.jpeg"><img src="assets/optisched-2.jpeg" alt="OptiSched class management modal" loading="lazy"></figure>
+                            <figure class="card-image" data-modal-image="assets/optisched-3.jpeg"><img src="assets/optisched-3.jpeg" alt="OptiSched calendar view" loading="lazy"></figure>
                         </div>
                     </div>
-                </div>
-            </section>
+                </article>
 
-            <section class="contact-section" id="contact">
-                <div>
-                    <p class="eyebrow">Contact</p>
-                    <h2>Open to internships, collaborations, and product-oriented engineering work.</h2>
+                <article class="project-card project-card--wide">
+                    <div class="project-copy">
+                        <p class="case-label">Java / Mobile health</p>
+                        <h3>IlacAsistanim</h3>
+                        <p>A mobile app concept for elderly users and patients, focused on medication tracking, caregiver visibility, and simpler daily health routines.</p>
+                        <div class="tag-row"><span>Java</span><span>Android</span><span>Health workflow</span></div>
+                        <a class="text-link" href="https://github.com/mehmetakifdurann/IlacAsistanim" target="_blank" rel="noreferrer">Open repository</a>
+                    </div>
+                    <div class="phone-gallery">
+                        <figure class="card-image" data-modal-image="assets/ilac-1.png"><img src="assets/ilac-1.png" alt="IlacAsistanim home screen" loading="lazy"></figure>
+                        <figure class="card-image" data-modal-image="assets/ilac-2.png"><img src="assets/ilac-2.png" alt="IlacAsistanim medication list" loading="lazy"></figure>
+                        <figure class="card-image" data-modal-image="assets/ilac-3.png"><img src="assets/ilac-3.png" alt="IlacAsistanim missed dose flow" loading="lazy"></figure>
+                        <figure class="card-image hide-small" data-modal-image="assets/ilac-4.png"><img src="assets/ilac-4.png" alt="IlacAsistanim treatment summary" loading="lazy"></figure>
+                        <figure class="card-image hide-small" data-modal-image="assets/ilac-5.png"><img src="assets/ilac-5.png" alt="IlacAsistanim caregiver profile" loading="lazy"></figure>
+                        <figure class="card-image hide-small" data-modal-image="assets/ilac-6.png"><img src="assets/ilac-6.png" alt="IlacAsistanim patient profile" loading="lazy"></figure>
+                    </div>
+                </article>
+            </div>
+
+            <div class="project-grid">
+                <article class="project-card">
+                    <div class="card-gallery">
+                        <figure class="card-image card-image--main" data-modal-image="stoxly-main.png"><img src="stoxly-main.png" alt="Stoxly main interface" loading="lazy"></figure>
+                        <figure class="card-image" data-modal-image="stoxly-price.png"><img src="stoxly-price.png" alt="Stoxly price analysis view" loading="lazy"></figure>
+                    </div>
+                    <div class="project-copy">
+                        <p class="case-label">Python / Finance</p>
+                        <h3>Stoxly</h3>
+                        <p>Personal investment analysis platform that translates complex financial data into plain-language insights.</p>
+                        <div class="tag-row"><span>Python</span><span>Finance</span><span>Insights</span></div>
+                        <a class="text-link" href="https://github.com/mehmetakifdurann/Stoxly" target="_blank" rel="noreferrer">Open repository</a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="card-gallery">
+                        <figure class="card-image card-image--main" data-modal-image="filebridge-main.png"><img src="filebridge-main.png" alt="FileBridge main interface" loading="lazy"></figure>
+                        <figure class="card-image" data-modal-image="filebridge-pool.png"><img src="filebridge-pool.png" alt="FileBridge transfer pool interface" loading="lazy"></figure>
+                    </div>
+                    <div class="project-copy">
+                        <p class="case-label">JavaScript / File transfer</p>
+                        <h3>FileBridge</h3>
+                        <p>Network lecture project for sharing files through a web interface, with a separate API layer for transfer operations.</p>
+                        <div class="tag-row"><span>JavaScript</span><span>C# API</span><span>File transfer</span></div>
+                        <a class="text-link" href="https://github.com/mehmetakifdurann/FileBridge" target="_blank" rel="noreferrer">Open repository</a>
+                    </div>
+                </article>
+
+                <article class="project-card compact">
+                    <div class="project-icon"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></div>
+                    <div class="project-copy">
+                        <p class="case-label">Jupyter Notebook</p>
+                        <h3>python-stock-analyzer</h3>
+                        <p>A Python notebook for analyzing user-selected stocks and reviewing historical performance signals.</p>
+                        <div class="tag-row"><span>Python</span><span>Stocks</span><span>Analysis</span></div>
+                        <a class="text-link" href="https://github.com/mehmetakifdurann/python-stock-analyzer" target="_blank" rel="noreferrer">Open repository</a>
+                    </div>
+                </article>
+
+                <article class="project-card compact">
+                    <div class="project-icon amber"><i class="fa-solid fa-traffic-light" aria-hidden="true"></i></div>
+                    <div class="project-copy">
+                        <p class="case-label">Simulation</p>
+                        <h3>Traffic Light Control Simulation</h3>
+                        <p>A software-based traffic control model with automated timing logic and manual override behavior for studying intersection flow.</p>
+                        <div class="tag-row"><span>Algorithms</span><span>Simulation</span><span>Control</span></div>
+                    </div>
+                </article>
+
+                <article class="project-card compact">
+                    <div class="project-icon coral"><i class="fa-solid fa-wave-square" aria-hidden="true"></i></div>
+                    <div class="project-copy">
+                        <p class="case-label">C++ / MATLAB</p>
+                        <h3>ECG Signal Analysis & Arrhythmia Detection</h3>
+                        <p>Diagnostic analysis software for identifying rhythm irregularities and abnormal heart-rate peaks in ECG data.</p>
+                        <div class="tag-row"><span>C++</span><span>MATLAB</span><span>Signal processing</span></div>
+                    </div>
+                </article>
+
+                <article class="project-card compact">
+                    <div class="project-icon mint"><i class="fa-solid fa-recycle" aria-hidden="true"></i></div>
+                    <div class="project-copy">
+                        <p class="case-label">IoT / Android</p>
+                        <h3>Smart Eco-Bin</h3>
+                        <p>An Arduino-powered recycling system paired with an Android app for fill-level monitoring and recycling statistics.</p>
+                        <div class="tag-row"><span>Arduino</span><span>IoT</span><span>Android</span></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="experience">
+            <div class="section-heading">
+                <p class="eyebrow">Experience & leadership</p>
+                <h2>Work, internships, and community leadership.</h2>
+                <p>Professional experience and volunteer roles, based on my current LinkedIn profile.</p>
+            </div>
+            <div class="experience-columns">
+                <div class="experience-column">
+                    <h3 class="column-title">Professional Experience</h3>
+
+                    <article class="experience-item">
+                        <p class="experience-date">Sep 2025 - Present</p>
+                        <div>
+                            <span class="experience-kicker">Meet and Study Library</span>
+                            <h4>Social Media Manager</h4>
+                            <p>Managing the brand's social media presence end-to-end: planning, designing, and publishing content across platforms. Handling Meta Business Suite operations, audience engagement, and performance tracking to grow online visibility.</p>
+                        </div>
+                    </article>
+
+                    <article class="experience-item">
+                        <p class="experience-date">Aug 2025 - Sep 2025</p>
+                        <div>
+                            <span class="experience-kicker">4S Information Technologies</span>
+                            <h4>IT Intern</h4>
+                            <p>Contributed to enterprise IT infrastructure operations with Active Directory Domain Services for user, group, and policy management. Prototyped AI-assisted workflows with Azure AI Studio and cloud-based AI services.</p>
+                        </div>
+                    </article>
+
+                    <article class="experience-item">
+                        <p class="experience-date">Oct 2024 - Dec 2024</p>
+                        <div>
+                            <span class="experience-kicker">Feed Protocol / Remote</span>
+                            <h4>Research and Development Intern</h4>
+                            <p>Researched random number generation and Verifiable Random Functions in blockchain ecosystems. Authored technical articles, delivered internal presentations, and explored product areas for VRF-based solutions.</p>
+                        </div>
+                    </article>
+
+                    <article class="experience-item">
+                        <p class="experience-date">Feb 2023 - Mar 2023</p>
+                        <div>
+                            <span class="experience-kicker">Sport Center Academy</span>
+                            <h4>HR Intern</h4>
+                            <p>Completed a general HR internship covering recruitment workflows, candidate communication, employee documentation, and core human resources operations.</p>
+                        </div>
+                    </article>
                 </div>
-                <div class="contact-actions">
-                    <a class="button button--solid" href="mailto:mehmetakifdurann@gmail.com">mehmetakifdurann@gmail.com</a>
-                    <a class="button button--ghost" href="https://github.com/mehmetakifdurann" target="_blank" rel="noreferrer">GitHub</a>
-                    <a class="button button--ghost" href="https://www.linkedin.com/in/mehmetakifduran/" target="_blank" rel="noreferrer">LinkedIn</a>
+
+                <div class="experience-column">
+                    <h3 class="column-title">Leadership & Community</h3>
+
+                    <article class="experience-item">
+                        <p class="experience-date">Sep 2025 - Jul 2026</p>
+                        <div>
+                            <span class="experience-kicker">Google Developer Groups on Campus</span>
+                            <h4>Lead</h4>
+                            <p>Led the GDG on Campus chapter at Baskent University, representing the global Google developer community and coordinating student activities.</p>
+                        </div>
+                    </article>
+
+                    <article class="experience-item">
+                        <p class="experience-date">Oct 2024 - Oct 2025</p>
+                        <div>
+                            <span class="experience-kicker">Baskent University Computer Society</span>
+                            <h4>President</h4>
+                            <p>Led the executive team and community operations, planned the yearly event calendar, and organized technical talks and student activities.</p>
+                        </div>
+                    </article>
+
+                    <article class="experience-item">
+                        <p class="experience-date">Sep 2023 - Oct 2024</p>
+                        <div>
+                            <span class="experience-kicker">Google Developer Student Clubs</span>
+                            <h4>Sponsorship Team Member</h4>
+                            <p>Identified and contacted potential sponsor companies, supported community events, and prepared sponsorship proposals.</p>
+                        </div>
+                    </article>
+
+                    <article class="experience-item">
+                        <p class="experience-date">Oct 2023 - Oct 2024</p>
+                        <div>
+                            <span class="experience-kicker">Baskent University Computer Society</span>
+                            <h4>Design & Promotion Team Member</h4>
+                            <p>Designed visual content and promotional materials for community events and contributed to the society's communications.</p>
+                        </div>
+                    </article>
+
+                    <article class="experience-item">
+                        <p class="experience-date">Mar 2023 - Sep 2023</p>
+                        <div>
+                            <span class="experience-kicker">Bilgi Blockchain</span>
+                            <h4>Human Resources Manager</h4>
+                            <p>Managed member recruitment end-to-end, organized team structures and role assignments, and coordinated internal communication.</p>
+                        </div>
+                    </article>
+
+                    <article class="experience-item">
+                        <p class="experience-date">Nov 2022 - Mar 2023</p>
+                        <div>
+                            <span class="experience-kicker">Bilgi Blockchain</span>
+                            <h4>Human Resources Specialist</h4>
+                            <p>Supported member recruitment, onboarding, and community coordination for Istanbul Bilgi University's blockchain community.</p>
+                        </div>
+                    </article>
                 </div>
-            </section>
-        </main>
-    </div>
+            </div>
+        </section>
+
+        <section class="section about-section" id="about">
+            <div>
+                <p class="eyebrow">About</p>
+                <h2>Backend-focused, product-minded.</h2>
+            </div>
+            <div class="about-copy">
+                <p>I enjoy projects where backend logic, data, and a usable interface have to work together. My experience spans enterprise IT, AI-assisted workflows, blockchain research, community leadership, and product development.</p>
+                <div class="skill-groups" aria-label="Technical skills">
+                    <div>
+                        <strong>Backend & Data</strong>
+                        <p>.NET, REST APIs, Python, FastAPI, PostgreSQL, SQL, Node.js</p>
+                    </div>
+                    <div>
+                        <strong>Languages & Product</strong>
+                        <p>C#, C++, Java, JavaScript, React, Android, MATLAB</p>
+                    </div>
+                    <div>
+                        <strong>Systems & Tools</strong>
+                        <p>Git, Active Directory, Azure AI Studio, OR-Tools, Arduino</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section" id="contact">
+            <div>
+                <p class="eyebrow">Contact</p>
+                <h2>Open to internships, collaborations, and backend/product engineering work.</h2>
+            </div>
+            <div class="contact-actions">
+                <a class="button button--solid" href="mailto:mehmetakifdurann@gmail.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i>Email</a>
+                <a class="button button--ghost" href="https://github.com/mehmetakifdurann" target="_blank" rel="noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i>GitHub</a>
+                <a class="button button--ghost" href="https://www.linkedin.com/in/mehmetakifduran/" target="_blank" rel="noreferrer"><i class="fa-brands fa-linkedin" aria-hidden="true"></i>LinkedIn</a>
+            </div>
+        </section>
+    </main>
 
     <div id="imageModal" class="modal" aria-hidden="true">
         <button class="modal-close" type="button" aria-label="Close preview">&times;</button>
         <img id="modalImage" class="modal-image" alt="Project preview">
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=4"></script>
 </body>
 </html>
