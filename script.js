@@ -4,13 +4,7 @@ const content = {
     <h2 id="panel-title">Hello, I’m Mehmet.</h2>
     <p class="panel__lede">I’m a Computer Engineering student and backend developer in Ankara, interested in systems that turn difficult workflows into clear, dependable products.</p>
     <p>My work moves between backend engineering, mobile products, optimization, networks, and applied research. I enjoy the parts of software where architecture meets reality: scheduling constraints, unreliable connections, notification timing, database integrity, and the small product decisions that make all of it usable.</p>
-    <p>Outside the code, I lead developer communities, organize technical events, and translate complicated ideas into content people can actually use. That mix of engineering and communication is the thread running through everything I build.</p>
-    <div class="panel-grid">
-      <div class="fact"><strong>890</strong><span>lectures scheduled by OptiSched</span></div>
-      <div class="fact"><strong>15</strong><span>technical events organized</span></div>
-      <div class="fact"><strong>20</strong><span>developers in the community I lead</span></div>
-      <div class="fact"><strong>1M+</strong><span>social content views generated</span></div>
-    </div>`,
+    <p>Outside the code, I lead developer communities, organize technical events, and translate complicated ideas into content people can actually use. That mix of engineering and communication is the thread running through everything I build.</p>`,
   education: `
     <p class="panel__eyebrow">The diploma</p>
     <h2 id="panel-title">Always learning, always building.</h2>
@@ -50,6 +44,12 @@ const content = {
     <h3>Backend, data & mobile</h3><div class="skill-cloud"><span>.NET</span><span>Node.js</span><span>Express</span><span>PostgreSQL</span><span>Redis</span><span>BullMQ</span><span>REST APIs</span><span>JWT</span><span>React Native</span></div>
     <h3>Systems & engineering</h3><div class="skill-cloud"><span>Multi-threading</span><span>Socket programming</span><span>TCP/IP</span><span>UDP</span><span>Active Directory</span><span>Docker</span><span>OOP</span><span>SOLID</span><span>Design patterns</span><span>Git</span></div>
     <h3>Exploration</h3><div class="skill-cloud"><span>Blockchain</span><span>dApps</span><span>Zero Knowledge Proofs</span><span>Arduino</span><span>Proteus</span></div>`,
+  hobbies: `
+    <p class="panel__eyebrow">The bass & basketball</p>
+    <h2 id="panel-title">Life beyond the screen.</h2>
+    <p class="panel__lede">Music and basketball keep me creative, collaborative, and moving.</p>
+    <p><strong>I played bass guitar for 3 years in a local rock band.</strong> Playing with other musicians taught me to listen closely, hold the rhythm, and make the whole group sound better—not just myself.</p>
+    <p>Basketball gives me the same kind of balance away from the desk: fast decisions, teamwork, repetition, and the energy to return to engineering problems with a fresh perspective.</p>`,
   contact: `
     <p class="panel__eyebrow">The envelope</p>
     <h2 id="panel-title">Let’s build something useful.</h2>
@@ -60,15 +60,67 @@ const content = {
       <a href="https://github.com/mehmetakifdurann" target="_blank" rel="noreferrer">GitHub</a>
       <a href="assets/Mehmet_Akif_Duran_CV.pdf" download>Download CV</a>
     </div>
-    <p class="panel-note">Based in Ankara, Türkiye · Working in English and Turkish.</p>`
+    <p class="panel-note">Based in Ankara, Turkey · Working in English and Turkish.</p>`
 };
 
 const panel = document.querySelector('#content-panel');
 const panelContent = document.querySelector('#panel-content');
 const lightToggle = document.querySelector('.light-toggle');
+const lampSwitch = document.querySelector('.lamp-switch');
+const lightControls = [lightToggle, lampSwitch];
 const soundToggle = document.querySelector('.sound-toggle');
+const loader = document.querySelector('#loader');
+const scene = document.querySelector('#scene');
+const sceneWrap = document.querySelector('.scene-wrap');
+const sceneArt = document.querySelector('.scene__art');
+const dust = document.querySelector('#dust');
 let previousFocus = null;
 let soundEnabled = false;
+let lightingTimer = null;
+
+for (let index = 0; index < 34; index += 1) {
+  const particle = document.createElement('i');
+  particle.style.left = `${8 + Math.random() * 82}%`;
+  particle.style.top = `${20 + Math.random() * 64}%`;
+  particle.style.setProperty('--duration', `${5 + Math.random() * 8}s`);
+  particle.style.setProperty('--delay', `${Math.random() * -10}s`);
+  particle.style.setProperty('--drift', `${-25 + Math.random() * 60}px`);
+  dust.appendChild(particle);
+}
+
+const startedAt = performance.now();
+function revealRoom() {
+  const delay = Math.max(0, 1650 - (performance.now() - startedAt));
+  window.setTimeout(() => {
+    loader.classList.add('is-hidden');
+    scene.classList.add('is-ready');
+  }, delay);
+}
+
+if (sceneArt.complete) revealRoom();
+else sceneArt.addEventListener('load', revealRoom, {once:true});
+window.setTimeout(revealRoom, 4500);
+
+function centerMobileRoom() {
+  if (matchMedia('(max-width:760px)').matches) {
+    sceneWrap.scrollLeft = Math.max(0, (sceneWrap.scrollWidth - sceneWrap.clientWidth) / 2);
+  }
+}
+window.addEventListener('load', () => window.setTimeout(centerMobileRoom, 60), {once:true});
+
+if (matchMedia('(pointer:fine)').matches && !matchMedia('(prefers-reduced-motion:reduce)').matches) {
+  scene.addEventListener('pointermove', event => {
+    const rect = scene.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - .5;
+    const y = (event.clientY - rect.top) / rect.height - .5;
+    scene.style.setProperty('--mx', `${x * -7}px`);
+    scene.style.setProperty('--my', `${y * -5}px`);
+  });
+  scene.addEventListener('pointerleave', () => {
+    scene.style.setProperty('--mx', '0px');
+    scene.style.setProperty('--my', '0px');
+  });
+}
 
 function playClick() {
   if (!soundEnabled) return;
@@ -123,15 +175,23 @@ document.addEventListener('keydown', event => {
   }
 });
 
-function setNight(isNight) {
+function setNight(isNight, animate = true) {
+  if (animate) {
+    document.body.classList.add('lighting-transition');
+    window.clearTimeout(lightingTimer);
+    lightingTimer = window.setTimeout(() => document.body.classList.remove('lighting-transition'), 3000);
+  }
   document.body.classList.toggle('is-night', isNight);
-  lightToggle.setAttribute('aria-pressed', String(isNight));
-  lightToggle.setAttribute('aria-label', isNight ? 'Switch to day mode' : 'Switch to night mode');
-  lightToggle.querySelector('span').textContent = isNight ? '☾' : '☼';
-  try { localStorage.setItem('portfolio-night', String(isNight)); } catch {}
+  lightControls.forEach(control => {
+    control.setAttribute('aria-pressed', String(isNight));
+    control.setAttribute('title', isNight ? 'Light is on · click to turn it off' : 'Light is off · click to turn it on');
+  });
+  lightToggle.setAttribute('aria-label', isNight ? 'Turn the desk lamp off and return to day' : 'Turn the desk lamp on and change to night');
+  lampSwitch.setAttribute('aria-label', isNight ? 'Click the desk lamp to turn it off' : 'Click the desk lamp to turn it on');
+  lampSwitch.querySelector('small').textContent = isNight ? 'Turn the light off' : 'Turn the light on';
 }
 
-lightToggle.addEventListener('click', () => setNight(!document.body.classList.contains('is-night')));
+lightControls.forEach(control => control.addEventListener('click', () => setNight(!document.body.classList.contains('is-night'))));
 soundToggle.addEventListener('click', () => {
   soundEnabled = !soundEnabled;
   soundToggle.setAttribute('aria-pressed', String(soundEnabled));
@@ -139,6 +199,7 @@ soundToggle.addEventListener('click', () => {
   if (soundEnabled) playClick();
 });
 
-try { setNight(localStorage.getItem('portfolio-night') === 'true'); } catch { setNight(false); }
+// Every fresh page visit starts in daylight with the desk lamp off.
+setNight(false, false);
 const initialPanel = location.hash.slice(1);
 if (content[initialPanel]) openPanel(initialPanel, false);

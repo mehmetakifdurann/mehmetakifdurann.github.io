@@ -2,63 +2,89 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#251d19">
-  <meta name="description" content="The interactive portfolio room of Mehmet Akif Duran — computer engineer and backend developer in Ankara.">
-  <meta property="og:title" content="Mehmet Akif Duran — Portfolio Room">
-  <meta property="og:description" content="Step inside my interactive studio and explore my projects, experience, and work.">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#20130d">
+  <meta name="description" content="Step inside the interactive portfolio room of Mehmet Akif Duran, computer engineer and backend developer.">
+  <meta property="og:title" content="Mehmet Akif Duran — Interactive Portfolio">
+  <meta property="og:description" content="Explore my work through an interactive illustrated studio.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mehmetakifdurann.github.io/">
-  <meta property="og:image" content="https://mehmetakifdurann.github.io/assets/portrait.png">
-  <meta name="twitter:card" content="summary">
-  <title>Mehmet Akif Duran — Portfolio Room</title>
-  <link rel="icon" href="assets/portrait.png">
-  <link rel="stylesheet" href="styles.css">
+  <meta property="og:image" content="https://mehmetakifdurann.github.io/assets/studio-room-v4.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Mehmet Akif Duran — Interactive Portfolio</title>
+  <link rel="icon" type="image/png" href="assets/favicon-circle.png?v=20260821-3">
+  <link rel="apple-touch-icon" href="assets/favicon-circle.png?v=20260821-3">
+  <link rel="preload" as="image" href="assets/studio-room-v4.png">
+  <link rel="stylesheet" href="styles.css?v=20260821-3">
 </head>
 <body>
-  <div class="ambient ambient--one" aria-hidden="true"></div>
-  <div class="ambient ambient--two" aria-hidden="true"></div>
-  <header class="topbar">
-    <a class="identity" href="#room" aria-label="Back to the room">
-      <span class="identity__mark">MAD</span>
-      <span><strong>Mehmet Akif Duran</strong><small>Computer engineer · backend developer</small></span>
-    </a>
-    <div class="topbar__actions">
-      <span class="explore-note">Click around the room</span>
-      <button class="sound-toggle" type="button" aria-label="Toggle room ambience" aria-pressed="false">♪</button>
-      <button class="light-toggle" type="button" aria-label="Switch to night mode" aria-pressed="false"><span aria-hidden="true">☼</span></button>
-      <button class="open-panel contact-pill" type="button" data-panel="contact">Say hello</button>
+  <div class="loader" id="loader" aria-label="Loading the portfolio room">
+    <div class="loader__mark"><span></span></div>
+    <p>Setting up the room…</p>
+    <div class="loader__track"><i></i></div>
+  </div>
+
+  <main class="experience" id="experience">
+    <div class="scene-wrap">
+      <section class="scene" id="scene" aria-label="Mehmet Akif Duran's interactive studio">
+        <img class="scene__art" src="assets/studio-room-v4.png" alt="A warm illustrated developer studio with a framed Türkiye panorama, a bass guitar, a basketball, a desk, books, and plants">
+        <div class="scene__night" aria-hidden="true"></div>
+        <div class="window-night" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><span></span></div>
+        <div class="scene__sun" aria-hidden="true"></div>
+        <div class="dust" id="dust" aria-hidden="true"></div>
+
+        <div class="portrait-insert" aria-hidden="true"><img src="assets/portrait.png" alt=""></div>
+        <div class="diploma-insert" aria-hidden="true"><strong>BAŞKENT</strong><span>Computer Engineering</span><small>2027</small></div>
+        <div class="screen-insert" aria-hidden="true">
+          <span class="screen-insert__top"><i></i><i></i><i></i></span>
+          <p><b>mehmet@portfolio</b>:~$ <span class="typed">building useful systems</span><em>_</em></p>
+          <div class="code-lines"><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="lamp-off-mask" aria-hidden="true"></div>
+        <div class="lamp-glow" aria-hidden="true"></div>
+        <button class="hotspot lamp-switch" type="button" aria-label="Click the desk lamp to turn it on" aria-pressed="false"><span class="hotspot__ring"></span><span class="hotspot__label"><b>Desk lamp</b><small>Turn the light on</small></span></button>
+
+        <button class="hotspot hotspot--about open-panel" type="button" data-panel="about" aria-label="About Mehmet"><span class="hotspot__ring"></span><span class="hotspot__label"><b>About me</b><small>The portrait</small></span></button>
+        <button class="hotspot hotspot--education open-panel" type="button" data-panel="education" aria-label="Education"><span class="hotspot__ring"></span><span class="hotspot__label"><b>Education</b><small>The diploma</small></span></button>
+        <button class="hotspot hotspot--projects open-panel" type="button" data-panel="projects" aria-label="Projects and work"><span class="hotspot__ring"></span><span class="hotspot__label"><b>Projects & work</b><small>The monitor</small></span></button>
+        <button class="hotspot hotspot--skills open-panel" type="button" data-panel="skills" aria-label="Technical skills"><span class="hotspot__ring"></span><span class="hotspot__label"><b>My toolbox</b><small>The bookshelf</small></span></button>
+        <button class="hotspot hotspot--experience open-panel" type="button" data-panel="experience" aria-label="Experience and leadership"><span class="hotspot__ring"></span><span class="hotspot__label"><b>Experience</b><small>The camera & globe</small></span></button>
+        <button class="hotspot hotspot--contact open-panel" type="button" data-panel="contact" aria-label="Contact Mehmet"><span class="hotspot__ring"></span><span class="hotspot__label"><b>Say hello</b><small>The envelope</small></span></button>
+        <div class="hotspot hotspot--location" tabindex="0" role="note" aria-label="Ankara, Turkey — Where I live"><span class="hotspot__ring"></span><span class="hotspot__label"><b>Ankara, Turkey</b><small>Where I live</small></span></div>
+        <button class="hotspot hotspot--bass open-panel" type="button" data-panel="hobbies" aria-label="Bass guitar hobby"><span class="hotspot__ring"></span><span class="hotspot__label"><b>Bass guitar</b><small>Three years in a rock band</small></span></button>
+        <button class="hotspot hotspot--basketball open-panel" type="button" data-panel="hobbies" aria-label="Basketball hobby"><span class="hotspot__ring"></span><span class="hotspot__label"><b>Basketball</b><small>Off the clock</small></span></button>
+        <a class="hotspot hotspot--cv" href="assets/Mehmet_Akif_Duran_CV.pdf" download aria-label="Download Mehmet Akif Duran's CV"><span class="hotspot__ring"></span><span class="hotspot__label"><b>Download CV</b><small>The backpack</small></span></a>
+
+        <div class="scene__brand"><strong>Mehmet Akif Duran</strong><span>Computer engineer · backend developer · Ankara, Turkey</span></div>
+        <p class="scene__hint"><i></i> Move around. Click the glowing objects.</p>
+      </section>
     </div>
-  </header>
-  <main id="room" class="room-shell">
-    <section class="intro" aria-labelledby="intro-title">
-      <p class="intro__kicker">Ankara, Türkiye · Available for engineering opportunities</p>
-      <h1 id="intro-title">I turn complex systems into useful software.</h1>
-      <p>Welcome to my room. Every object tells part of my story — from distributed file transfers to scheduling 890 university lectures.</p>
-    </section>
-    <section class="room" aria-label="Interactive portfolio room">
-      <div class="sunbeam" aria-hidden="true"></div>
-      <div class="window" aria-hidden="true"><div class="window__sky"><i></i><i></i><i></i></div><div class="window__frame window__frame--v"></div><div class="window__frame window__frame--h"></div></div>
-      <button class="hotspot hotspot--about open-panel" type="button" data-panel="about" aria-label="Open About me"><span class="frame portrait-frame"><img src="assets/portrait.png" alt="Illustrated portrait of Mehmet Akif Duran"></span><span class="hotspot__label">About me</span></button>
-      <button class="hotspot hotspot--education open-panel" type="button" data-panel="education" aria-label="Open education"><span class="frame diploma"><b>BAŞKENT</b><i>Computer Engineering</i><em>2027</em></span><span class="hotspot__label">Education</span></button>
-      <div class="ankara-print" aria-hidden="true"><span>ANKARA</span><b>39.93° N</b></div>
-      <button class="hotspot hotspot--experience open-panel" type="button" data-panel="experience" aria-label="Open experience and leadership"><span class="shelf-object trophy" aria-hidden="true">★</span><span class="hotspot__label">Experience</span></button>
-      <button class="hotspot hotspot--skills open-panel" type="button" data-panel="skills" aria-label="Open technical skills"><span class="books" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span class="hotspot__label">Toolbox</span></button>
-      <div class="bookcase" aria-hidden="true"><span class="bookcase__shelf shelf--1"></span><span class="bookcase__shelf shelf--2"></span><span class="bookcase__shelf shelf--3"></span><span class="books-static books-static--1"></span><span class="books-static books-static--2"></span><span class="storage-box"></span></div>
-      <div class="desk" aria-hidden="true"><span class="desk__top"></span><i></i><i></i><span class="drawer"><b></b><b></b></span></div>
-      <button class="hotspot hotspot--projects open-panel" type="button" data-panel="projects" aria-label="Open selected projects"><span class="monitor"><span class="monitor__screen"><b>&lt; build ideas<br>&nbsp;&nbsp;into systems /&gt;</b><i></i><i></i><i></i></span><span class="monitor__stand"></span></span><span class="hotspot__label">Projects & work</span></button>
-      <div class="desk-lamp" aria-hidden="true"><i></i><b></b><span></span></div>
-      <div class="keyboard" aria-hidden="true"></div><div class="coffee" aria-hidden="true">M</div>
-      <div class="plant" aria-hidden="true"><i></i><i></i><i></i><i></i><span></span></div>
-      <button class="hotspot hotspot--contact open-panel" type="button" data-panel="contact" aria-label="Open contact links"><span class="envelope" aria-hidden="true"><i></i></span><span class="hotspot__label">Contact</span></button>
-      <div class="floor" aria-hidden="true"></div><div class="rug" aria-hidden="true"><i></i></div><div class="cables" aria-hidden="true"></div>
-      <p class="room-hint"><span>Explore</span> the glowing objects</p>
-    </section>
-    <nav class="mobile-map" aria-label="Portfolio sections"><button class="open-panel" type="button" data-panel="about">About</button><button class="open-panel" type="button" data-panel="projects">Projects</button><button class="open-panel" type="button" data-panel="experience">Experience</button><button class="open-panel" type="button" data-panel="skills">Skills</button><button class="open-panel" type="button" data-panel="contact">Contact</button></nav>
+
+    <div class="scene__controls">
+      <button class="sound-toggle" type="button" aria-label="Turn room sounds on" aria-pressed="false">♪</button>
+      <button class="light-toggle" type="button" aria-label="Turn the desk lamp on and change to night" aria-pressed="false" title="Light is off · click to turn it on"><span class="light-toggle__bulb" aria-hidden="true"></span></button>
+    </div>
+
+    <nav class="mobile-dock" aria-label="Portfolio sections">
+      <button class="open-panel" type="button" data-panel="about">About</button>
+      <button class="open-panel" type="button" data-panel="projects">Projects</button>
+      <button class="open-panel" type="button" data-panel="experience">Experience</button>
+      <button class="open-panel" type="button" data-panel="skills">Skills</button>
+      <button class="open-panel" type="button" data-panel="hobbies">Hobbies</button>
+      <button class="open-panel" type="button" data-panel="contact">Contact</button>
+    </nav>
   </main>
-  <footer><span>Designed and built by Mehmet Akif Duran</span><span>© 2026 · Ankara</span></footer>
-  <div class="panel" id="content-panel" role="dialog" aria-modal="true" aria-labelledby="panel-title" aria-hidden="true"><div class="panel__backdrop" data-close-panel></div><article class="panel__card"><button class="panel__close" type="button" data-close-panel aria-label="Close panel">×</button><div id="panel-content"></div></article></div>
+
+  <div class="panel" id="content-panel" role="dialog" aria-modal="true" aria-labelledby="panel-title" aria-hidden="true">
+    <button class="panel__backdrop" type="button" data-close-panel aria-label="Close panel"></button>
+    <article class="panel__card">
+      <div class="panel__handle" aria-hidden="true"></div>
+      <button class="panel__close" type="button" data-close-panel aria-label="Close panel">×</button>
+      <div id="panel-content"></div>
+    </article>
+  </div>
+
   <noscript><p class="noscript">JavaScript is needed to explore this interactive portfolio.</p></noscript>
-  <script src="script.js"></script>
+  <script src="script.js?v=20260821-3"></script>
 </body>
 </html>

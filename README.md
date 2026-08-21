@@ -1,6 +1,6 @@
 # Mehmet Akif Duran — Interactive Portfolio
 
-An illustrated, interactive portfolio room built for GitHub Pages.
+A full-screen illustrated portfolio room built for GitHub Pages, with animated loading, ambient dust and light, a smooth day/night transition, a framed Türkiye panorama, softly glowing interactive objects, horizontal mobile exploration, hobby objects, and sliding content panels.
 
 ## Publish
 
