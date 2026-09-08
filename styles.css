@@ -48,3 +48,175 @@ body.is-night .lamp-glow{opacity:1;filter:blur(9px);animation:lampPulseV2 4s eas
   .hotspot--location .hotspot__label small{display:block}
   .mobile-dock button{min-width:62px;padding:9px 5px}
 }
+
+/* A quieter motion system, with the original illustrated-room palette. */
+:root {
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --motion-duration: 620ms;
+  --paper: #f7edda;
+}
+.loader { transition-duration: 600ms; }
+.loader__track i { animation-duration: 900ms; }
+.scene {
+  filter: none;
+  transition: opacity 1s var(--ease);
+  will-change: transform;
+}
+.scene__sun { animation: none; opacity: .5; }
+.scene__art { transition: none; }
+body.is-night .scene__art { filter: none; }
+/* Crossfade overlays instead of filtering every pixel of the full-size room. */
+body.is-night .scene__night { opacity: .82; }
+body.is-night .lamp-glow { animation: none; filter: blur(7px); }
+.lamp-glow { transition: opacity 2.2s ease-in-out; }
+.scene__night, .window-night, .scene__sun, .lamp-off-mask {
+  transition: opacity 2.2s ease-in-out;
+}
+.hotspot .hotspot__ring {
+  opacity: .24;
+  box-shadow: 0 0 14px #f2b64555, inset 0 0 10px #ffe7a522;
+  animation: softGlow 4.8s ease-in-out infinite;
+  transition: opacity 400ms ease, background-color 400ms ease;
+}
+.hotspot:nth-of-type(3n) .hotspot__ring { animation-delay: -1.6s; }
+.hotspot:nth-of-type(3n + 1) .hotspot__ring { animation-delay: -3.2s; }
+@keyframes softGlow { 50% { opacity: .46; } }
+.hotspot:hover .hotspot__ring, .hotspot:focus-visible .hotspot__ring {
+  animation: none;
+  opacity: .95;
+  box-shadow: 0 0 14px #f2b64555, inset 0 0 10px #ffe7a522;
+}
+.hotspot__label {
+  border-radius: 10px;
+  padding: 10px 14px;
+  transition: opacity 260ms ease, transform 400ms var(--ease);
+}
+.hotspot__label b { font-size: 14px; }
+.hotspot__label small { font-size: 12px; }
+.scene__brand { border-radius: 0 10px 10px 0; }
+.scene__brand span { font-size: clamp(10px, .85vw, 13px); }
+.scene__hint { font-size: 12px; }
+.scene__hint i { animation-duration: 3s; }
+.scene__controls button {
+  width: 44px;
+  height: 44px;
+  transition: transform 350ms var(--ease), background-color 250ms ease, color 250ms ease;
+}
+.panel-open .scene *, .is-paused .scene * { animation-play-state: paused !important; }
+
+/* Keep the backdrop visible until the card has finished closing. */
+.panel {
+  opacity: 1;
+  pointer-events: none;
+  transition: visibility 0s linear var(--motion-duration);
+}
+.panel.is-open { pointer-events: auto; transition-delay: 0s; }
+.panel__backdrop {
+  opacity: 0;
+  backdrop-filter: none;
+  background: #100a07b8;
+  transition: opacity var(--motion-duration) ease;
+}
+.panel.is-open .panel__backdrop { opacity: 1; }
+.panel__card {
+  width: min(780px, 58vw);
+  border: 1px solid #b9a083;
+  border-radius: 18px;
+  padding: clamp(32px, 4.5vw, 64px);
+  box-shadow: -24px 16px 90px #0006;
+  background: linear-gradient(145deg, #fcf5e7, var(--paper) 65%);
+  transform: translate3d(calc(100% + 5vw), 0, 0);
+  transition: transform var(--motion-duration) var(--ease);
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #b9a083 transparent;
+  scrollbar-gutter: stable;
+}
+.panel__card:before { display: none; }
+.panel__handle { height: 72px; width: 4px; border-radius: 0 4px 4px 0; }
+.panel__close {
+  width: 44px;
+  height: 44px;
+  background: #fcf5e7;
+  transition: transform 350ms var(--ease), background-color 250ms ease;
+}
+.panel__close:hover { transform: rotate(90deg); }
+.panel__eyebrow { font-size: 12px; letter-spacing: .16em; }
+.panel h2 {
+  margin-bottom: 24px;
+  font-size: clamp(36px, 4.1vw, 60px);
+  line-height: 1.04;
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+.panel p { font-size: 16px; line-height: 1.7; }
+.panel .panel__eyebrow { font-size: 12px; }
+.panel .panel__lede { margin-bottom: 32px; font-size: 17px; line-height: 1.65; }
+.panel h3 { font-size: 17px; }
+.skill-cloud { gap: 9px; padding-bottom: 25px; }
+.skill-cloud:not(:last-child) { border-bottom: 1px solid #bca58655; }
+.skill-cloud:last-child { padding-bottom: 0; }
+.skill-cloud span {
+  padding: 9px 13px;
+  border-color: #c9b698;
+  border-radius: 8px;
+  background: #fffaf0;
+  color: #463326;
+  font-size: 14px;
+  font-weight: 650;
+  box-shadow: 0 2px 0 #ac8a6010;
+  transition: transform 300ms var(--ease), background-color 250ms ease, border-color 250ms ease;
+}
+@media (hover: hover) {
+  .skill-cloud span:hover { transform: translateY(-2px); background: #f1dfbf; border-color: #ad875c; }
+}
+.panel-grid { gap: 16px; }
+.project, .timeline-item { border-color: #cebba0; border-radius: 12px; }
+.project__body { padding: 20px; }
+.project__image { transition: transform 700ms var(--ease); }
+.project p, .timeline-item p { font-size: 16px; }
+.project a { font-size: 14px; }
+.tags { gap: 6px; }
+.tags span { font-size: 12px; }
+.timeline { gap: 14px; }
+.timeline-item { grid-template-columns: 1fr; gap: 8px; padding: 22px; }
+.timeline-item time { font-size: 12px; letter-spacing: .06em; }
+.contact-links a { border-radius: 10px; }
+.panel-note { border-radius: 0 8px 8px 0; }
+button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--rust);
+  outline-offset: 4px;
+}
+.scene__controls button:focus-visible, .mobile-dock button:focus-visible { outline-color: var(--gold); }
+@media (max-width: 1020px) and (min-width: 761px) {
+  .panel__card { width: 68vw; }
+  .panel-grid { grid-template-columns: 1fr; }
+  .scene__hint { display: none; }
+}
+@media (max-width: 760px) {
+  .panel__card {
+    width: 100%;
+    max-height: 92vh;
+    max-height: 92dvh;
+    padding: 42px 24px calc(28px + env(safe-area-inset-bottom));
+    border-radius: 22px 22px 0 0;
+    transform: translate3d(0, 105%, 0);
+  }
+  .panel__handle { top: 10px; left: calc(50% - 22px); width: 44px; height: 4px; border-radius: 99px; }
+  .panel h2 { font-size: clamp(34px, 9vw, 44px); }
+  .panel .panel__lede { font-size: 16px; }
+  .skill-cloud { gap: 8px; }
+  .skill-cloud span { padding: 8px 11px; }
+  .scene { will-change: auto; }
+  .scene__brand strong { font-size: 16px; }
+  .scene__brand { bottom: 82px; }
+  .scene__controls button { width: 44px; height: 44px; font-size: 16px; }
+  .hotspot__label b { font-size: 14px; }
+  .mobile-dock { border-radius: 16px; }
+  .mobile-dock button { min-width: 76px; min-height: 44px; font-size: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root { --motion-duration: 0ms; }
+  *, *:before, *:after { animation: none !important; transition: none !important; }
+  .scene { --mx: 0px !important; --my: 0px !important; will-change: auto; }
+}

@@ -40,8 +40,8 @@ const content = {
     <p class="panel__eyebrow">The bookshelf</p>
     <h2 id="panel-title">My engineering toolbox.</h2>
     <p class="panel__lede">I choose tools around the problem, with a particular interest in backend architecture, data flow, and systems behavior.</p>
-    <h3>Languages</h3><div class="skill-cloud"><span>C</span><span>C++</span><span>C#</span><span>Java</span><span>Python</span><span>TypeScript</span><span>JavaScript</span><span>SQL</span><span>R</span><span>MATLAB</span></div>
-    <h3>Backend, data & mobile</h3><div class="skill-cloud"><span>.NET</span><span>Node.js</span><span>Express</span><span>PostgreSQL</span><span>Redis</span><span>BullMQ</span><span>REST APIs</span><span>JWT</span><span>React Native</span></div>
+    <h3>Languages</h3><div class="skill-cloud"><span>C/C++</span><span>C#</span><span>Java</span><span>Python</span><span>SQL</span></div>
+    <h3>Backend, data & mobile</h3><div class="skill-cloud"><span>.NET</span><span>PostgreSQL</span><span>Redis</span><span>REST APIs</span><span>JWT</span><span>React Native</span></div>
     <h3>Systems & engineering</h3><div class="skill-cloud"><span>Multi-threading</span><span>Socket programming</span><span>TCP/IP</span><span>UDP</span><span>Active Directory</span><span>Docker</span><span>OOP</span><span>SOLID</span><span>Design patterns</span><span>Git</span></div>
     <h3>Exploration</h3><div class="skill-cloud"><span>Blockchain</span><span>dApps</span><span>Zero Knowledge Proofs</span><span>Arduino</span><span>Proteus</span></div>`,
   hobbies: `
@@ -58,7 +58,7 @@ const content = {
       <a href="mailto:mehmetakifdurann@gmail.com">Email me</a>
       <a href="https://www.linkedin.com/in/mehmetakifduran/" target="_blank" rel="noreferrer">LinkedIn</a>
       <a href="https://github.com/mehmetakifdurann" target="_blank" rel="noreferrer">GitHub</a>
-      <a href="assets/Mehmet_Akif_Duran_CV.pdf" download>Download CV</a>
+      <a href="assets/Mehmet_Akif_Duran_CV_EN.pdf" download>Download CV</a>
     </div>
     <p class="panel-note">Based in Ankara, Turkey · Working in English and Turkish.</p>`
 };
@@ -77,8 +77,13 @@ const dust = document.querySelector('#dust');
 let previousFocus = null;
 let soundEnabled = false;
 let lightingTimer = null;
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+const finePointer = matchMedia('(pointer: fine)');
+const experience = document.querySelector('#experience');
+const panelCard = panel.querySelector('.panel__card');
+panel.inert = true;
 
-for (let index = 0; index < 34; index += 1) {
+for (let index = 0; index < 22; index += 1) {
   const particle = document.createElement('i');
   particle.style.left = `${8 + Math.random() * 82}%`;
   particle.style.top = `${20 + Math.random() * 64}%`;
@@ -89,8 +94,11 @@ for (let index = 0; index < 34; index += 1) {
 }
 
 const startedAt = performance.now();
+let roomRevealed = false;
 function revealRoom() {
-  const delay = Math.max(0, 1650 - (performance.now() - startedAt));
+  if (roomRevealed) return;
+  roomRevealed = true;
+  const delay = reducedMotion.matches ? 0 : Math.max(0, 500 - (performance.now() - startedAt));
   window.setTimeout(() => {
     loader.classList.add('is-hidden');
     scene.classList.add('is-ready');
@@ -98,7 +106,10 @@ function revealRoom() {
 }
 
 if (sceneArt.complete) revealRoom();
-else sceneArt.addEventListener('load', revealRoom, {once:true});
+else {
+  sceneArt.addEventListener('load', revealRoom, {once: true});
+  sceneArt.addEventListener('error', revealRoom, {once: true});
+}
 window.setTimeout(revealRoom, 4500);
 
 function centerMobileRoom() {
@@ -108,19 +119,61 @@ function centerMobileRoom() {
 }
 window.addEventListener('load', () => window.setTimeout(centerMobileRoom, 60), {once:true});
 
-if (matchMedia('(pointer:fine)').matches && !matchMedia('(prefers-reduced-motion:reduce)').matches) {
-  scene.addEventListener('pointermove', event => {
-    const rect = scene.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width - .5;
-    const y = (event.clientY - rect.top) / rect.height - .5;
-    scene.style.setProperty('--mx', `${x * -7}px`);
-    scene.style.setProperty('--my', `${y * -5}px`);
-  });
-  scene.addEventListener('pointerleave', () => {
+// Ease toward the pointer at the same speed on 60 Hz and high refresh rate screens.
+let motionFrame = 0;
+let lastFrame = 0;
+let targetX = 0;
+let targetY = 0;
+let currentX = 0;
+let currentY = 0;
+let sceneBounds = null;
+
+function animateRoom(now) {
+  const elapsed = lastFrame ? Math.min(now - lastFrame, 50) : 16.67;
+  lastFrame = now;
+  const blend = 1 - Math.exp(-elapsed / 130);
+  currentX += (targetX - currentX) * blend;
+  currentY += (targetY - currentY) * blend;
+  const settled = Math.abs(targetX - currentX) + Math.abs(targetY - currentY) < .015;
+  if (settled) { currentX = targetX; currentY = targetY; }
+  scene.style.setProperty('--mx', `${currentX.toFixed(3)}px`);
+  scene.style.setProperty('--my', `${currentY.toFixed(3)}px`);
+  motionFrame = settled ? 0 : requestAnimationFrame(animateRoom);
+  if (settled) lastFrame = 0;
+}
+
+function queueRoomMotion() {
+  if (!motionFrame) motionFrame = requestAnimationFrame(animateRoom);
+}
+
+function resetRoomMotion() {
+  targetX = targetY = 0;
+  if (reducedMotion.matches) {
+    cancelAnimationFrame(motionFrame);
+    motionFrame = lastFrame = currentX = currentY = 0;
     scene.style.setProperty('--mx', '0px');
     scene.style.setProperty('--my', '0px');
-  });
+  } else queueRoomMotion();
 }
+
+scene.addEventListener('pointerenter', () => { sceneBounds = scene.getBoundingClientRect(); });
+scene.addEventListener('pointermove', event => {
+  if (!finePointer.matches || reducedMotion.matches || panel.classList.contains('is-open')) return;
+  sceneBounds ||= scene.getBoundingClientRect();
+  targetX = ((event.clientX - sceneBounds.left) / sceneBounds.width - .5) * -6;
+  targetY = ((event.clientY - sceneBounds.top) / sceneBounds.height - .5) * -4;
+  queueRoomMotion();
+}, {passive: true});
+scene.addEventListener('pointerleave', resetRoomMotion);
+window.addEventListener('resize', () => { sceneBounds = null; resetRoomMotion(); });
+reducedMotion.addEventListener('change', resetRoomMotion);
+document.addEventListener('visibilitychange', () => {
+  document.body.classList.toggle('is-paused', document.hidden);
+  if (document.hidden) {
+    cancelAnimationFrame(motionFrame);
+    motionFrame = lastFrame = 0;
+  } else resetRoomMotion();
+});
 
 function playClick() {
   if (!soundEnabled) return;
@@ -142,12 +195,17 @@ function playClick() {
 
 function openPanel(name, updateHash = true) {
   if (!content[name]) return;
-  previousFocus = document.activeElement;
+  if (!panel.classList.contains('is-open')) previousFocus = document.activeElement;
   panelContent.innerHTML = content[name];
+  panelCard.scrollTop = 0;
+  panel.inert = false;
   panel.classList.add('is-open');
+  document.body.classList.add('panel-open');
+  resetRoomMotion();
   panel.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
   panel.querySelector('.panel__close').focus({preventScroll:true});
+  experience.inert = true;
   if (updateHash) history.replaceState(null, '', `#${name}`);
   playClick();
 }
@@ -155,14 +213,17 @@ function openPanel(name, updateHash = true) {
 function closePanel(updateHash = true) {
   if (!panel.classList.contains('is-open')) return;
   panel.classList.remove('is-open');
+  document.body.classList.remove('panel-open');
+  experience.inert = false;
+  previousFocus?.focus?.({preventScroll:true});
+  panel.inert = true;
   panel.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
   if (updateHash) history.replaceState(null, '', location.pathname + location.search);
-  previousFocus?.focus?.({preventScroll:true});
 }
 
 document.querySelectorAll('.open-panel').forEach(button => button.addEventListener('click', () => openPanel(button.dataset.panel)));
-document.querySelectorAll('[data-close-panel]').forEach(button => button.addEventListener('click', closePanel));
+document.querySelectorAll('[data-close-panel]').forEach(button => button.addEventListener('click', () => closePanel()));
 document.addEventListener('keydown', event => {
   if (event.key === 'Escape') closePanel();
   if (event.key === 'Tab' && panel.classList.contains('is-open')) {
